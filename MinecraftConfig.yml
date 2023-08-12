@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft
+  namespace: minecraft
+data:
+  ALLOW_FLIGHT: "true"
+  ALLOW_NETHER: "true"
+  DIFFICULTY: "hard"
+  ENABLE_COMMAND_BLOCK: "true"
+  ENFORCE_SECURE_PROFILE: "false"
+  # ENFORCE_WHITELIST: "true"
+  MODE: "survival"
+  PREVIEWS_CHAT: "true"
+  PVP: "true"
+  SERVER_NAME: "Minecraft Server"
+  MAX_MEMORY: 10G
+  PLAYER_IDLE_TIMEOUT: "0"
+  # WHITELIST: "${WHITELIST}"
+  # ENABLE_WHITELIST: "FALSE"
+  EULA: "TRUE"
+  TYPE: "SPIGOT"
+  MODS_FILE: /extras/mods.txt

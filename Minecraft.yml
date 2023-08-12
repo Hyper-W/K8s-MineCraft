@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minecraft
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      containers:
+        - name: minecraft
+          image: itzg/minecraft-server:2023.7.0-java17-openj9
+          envFrom:
+            - configMapRef:
+                name: minecraft
+          volumeMounts:
+            - name: minecraft
+              mountPath: /data
+            - name: mod-conf
+              mountPath: /extras
+      volumes:
+        - name: mod-conf
+          configMap:
+            name: mod-conf
+  volumeClaimTemplates:
+    - metadata:
+        name: minecraft
+      spec:
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: 20Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft
+  namespace: minecraft
+spec:
+  ports:
+    - name: java
+      port: 25565
+      protocol: TCP
+      targetPort: 25565
+    - name: bedrock
+      port: 19132
+      protocol: UDP
+      targetPort: 19132
+    - name: bedrockv6
+      port: 19133
+      protocol: UDP
+      targetPort: 19133
+  selector:
+    app: minecraft
+  type: LoadBalancer
