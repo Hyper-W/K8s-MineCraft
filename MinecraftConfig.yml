@@ -13,7 +13,7 @@ data:
   MODE: "survival"
   PREVIEWS_CHAT: "true"
   PVP: "true"
-  SERVER_NAME: "Minecraft Server"
+  SERVER_NAME: "Microk8s HA Cluster"
   MAX_MEMORY: 10G
   PLAYER_IDLE_TIMEOUT: "0"
   # WHITELIST: "${WHITELIST}"
