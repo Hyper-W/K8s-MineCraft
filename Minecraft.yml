@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: minecraft
-          image: itzg/minecraft-server:2023.8.2-java17-openj9
+          image: itzg/minecraft-server:2023.9.1-java17-openj9
           envFrom:
             - configMapRef:
                 name: minecraft
